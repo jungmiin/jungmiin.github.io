@@ -55,8 +55,9 @@
 }
 
 %link-hover {
-  color: #d2603a !important;
-  border-bottom: 1px solid #d2603a;
+  color: #ffffff !important;
+  border-bottom: 1px solid #ffffff;
+  background-color: #0153ab;
   text-decoration: none;
 }
 
@@ -107,7 +108,7 @@
 }
 
 %sidebar-links {
-  color: #4b66a0;
+  color: #0153ab;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -160,7 +161,7 @@
   transform: translateX(-50%);
 }
 
-@mixin prompt($type, $fa-content, $fa-style: "solid") {
+@mixin prompt($type, $fa-content, $fa-style: 'solid') {
   &.prompt-#{$type} {
     background-color: var(--prompt-#{$type}-bg);
 
