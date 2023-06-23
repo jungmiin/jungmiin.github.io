@@ -1278,6 +1278,7 @@ $btn-mb: 0.5rem;
 
   [#{$sidebar-display}] {
     #sidebar {
+      -webkit-transform: translateX(0);
       transform: translateX(0);
     }
 
@@ -1331,7 +1332,6 @@ $btn-mb: 0.5rem;
   #topbar-title,
   #sidebar-trigger,
   #search-trigger {
-    cursor: pointer;
     display: block;
   }
 
