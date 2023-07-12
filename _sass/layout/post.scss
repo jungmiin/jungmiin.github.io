@@ -292,6 +292,7 @@ h1 + .post-meta {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: black;
 
       &:hover {
         color: var(--toc-highlight);
