@@ -5,7 +5,7 @@ theme: jekyll-theme-chirpy
 
 # Change the following value to '/PROJECT_NAME' ONLY IF your site type is GitHub Pages Project sites
 # and doesn't have a custom domain.
-baseurl: ''
+baseurl: ""
 
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
@@ -20,13 +20,13 @@ timezone: Asia/Seoul
 
 title: jungmiin # the main title
 
-tagline: 대체로 실패 단 하나의 성공 # it will display as the sub-title
+tagline: "이전 블로그 : https://velog.io/@jungmiin" # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   jungmiin의 블로그
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://jungmiin.github.io'
+url: "https://jungmiin.github.io"
 
 github:
   username: jungmiin # change to your github username
