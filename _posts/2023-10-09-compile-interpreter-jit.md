@@ -6,9 +6,9 @@ tags:
   - 운영체제
   - 면접
   - 스터디
-  - "#컴파일"
   - 인터프리터
   - JIT
+  - 컴파일
 layout: post
 toc: true
 ---
