@@ -11,8 +11,8 @@ toc: true
 ## 문제 상황
 - `onKeyDown` 을 통해 `Enter` 키를 누르면 자동으로 넘어가는 기능을 구현하고자 하였다.
 - 그런데 이 상황을 통해 넘어가면, 요청이 두번씩 날라가는지 페이지가 두번 이동하는 현상이 발생하였다.
-![페이지 스택에 동일한 페이지가 이미 있는 것을 알 수 있다.](https://i.imgur.com/jUFEN3H.png)
-
+![문제 상황에서의 페이지 스택](https://i.imgur.com/jUFEN3H.png)
+_페이지 스택에 동일한 페이지가 이미 있는 것을 알 수 있다._
 ## onKeyDown
 - 확실하게 문제를 파악하기 위해 어디서부터 요청이 두번 이루어지는 것을 파악하고자 하였다.
 - 다음은 `keyDown` 이벤트에 따른 처리를 해주는 `handleKeyDown` 함수이다.
@@ -30,9 +30,9 @@ const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 	- 이 속성을 보기 위해서는 `nativeEvent` 를 통해 브라우저의 고유 이벤트에 접근해야 한다.
 - 이 코드를 실행시키면 아래와 같은 결과가 나온다.
 
-|                 한글                 |                 영어                 |
+|                 한글                 |                 영문                 |
 |:------------------------------------:|:------------------------------------:|
-|![](https://i.imgur.com/RiZZxNH.png)|![](https://i.imgur.com/yluK3RX.png)|
+|![한글의 경우](https://i.imgur.com/RiZZxNH.png)|![영문의 경우](https://i.imgur.com/yluK3RX.png)|
 
 - 모종의 이유로 한글에서는 Enter 키가 두번 인식이된다.
  >If I insert korean characters in `<input>` tag without moving the cursor, and press down & hold the Enter key,
