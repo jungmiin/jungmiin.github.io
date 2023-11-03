@@ -31,7 +31,7 @@ const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 
 |                 한글                 |                 영어                 |
 |:------------------------------------:|:------------------------------------:|
-| ![[Pasted image 20231103154916.png]] |![[Pasted image 20231103155311.png]]|
+|![](https://i.imgur.com/RiZZxNH.png)|![](https://i.imgur.com/yluK3RX.png)|
 
 - 모종의 이유로 한글에서는 Enter 키가 두번 인식이된다.
  >If I insert korean characters in `<input>` tag without moving the cursor, and press down & hold the Enter key,
