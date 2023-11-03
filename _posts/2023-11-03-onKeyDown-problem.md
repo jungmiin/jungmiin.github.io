@@ -66,5 +66,6 @@ const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 };
 ```
 - `isComposing` 은 영어, 숫자, 조합이 필요하지 않은 언어를 작성할 때에는 늘 `false` 이다.
-- 그러나 한글과 같이 조합이 필요한 언어로 작성할 때는 키를 한번만 눌렀음에도 불구하고 두 번 이벤트가 발생할 때가 존재하고 그때의 경우 `isComposing` 의 상태는 늘 `false -> true` 로 변경된다.
+- 그러나 한글과 같이 조합이 필요한 언어로 작성할 때는 키를 한번만 눌렀음에도 불구하고 두 번 이벤트가 발생할 때가 존재하고
+	- 그때의 경우 `isComposing` 의 상태는 늘 `true -> false` 로 변경된다.
 - 그렇기 때문에 `isComposing` 상태를 `false` 일 때만으로 제한을 두고, `e.key` 의 `Enter` 여부를 검사한다면 어떤 언어의 문자를 작성하든지 단 한번의 이벤트를 처리할 수 있게 보장이 가능하다.
