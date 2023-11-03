@@ -36,13 +36,16 @@ const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     | ![한글의 경우](https://i.imgur.com/RiZZxNH.png) | ![영문의 경우](https://i.imgur.com/yluK3RX.png) |
 - 모종의 이유로 한글에서는 Enter 키가 두번 인식이된다.
 >If I insert korean characters in `<input>` tag without moving the cursor, and press down & hold the Enter key,
+
 >1. keydown event occurs (normal)
 >2. keyup event occurs (unexpected)
 >3. keydown event occurs (unexpected)
 >4. keypress event occurs (normal)
 >5. keydown & keypress event occurs continuously until enter key is released. (normal) And when I release the Enter key,
 >6. keyup event occurs (normal)
+>
 >Step 2 & 3 are unexpected behaviors.
+>
 >[출처](https://github.com/vuejs/vue/issues/10277#issuecomment-731768059)
 - 이러한 이유는 IME(Input Method Editor) 와 관련된 이슈인 것으로 추정되며, 이러한 조합 문자를 다루는 경우 `Enter` 키를 처리하는데에 있어서 불분명한 `keyUp` 이벤트와 `keyDown` 이벤트가 다시 한번 발생하게 되며, 그에 따라 `onKeyDown` 핸들러가 두번 실행되는 것이다.
 
