@@ -30,27 +30,19 @@ const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 	- 그렇지만 이러한 속성을 `React`에서 지원해주지 않기 때문에 (`React`는 `SyntheticEvent` 여서 따로 구현된 합성 이벤트가 존재한다.)
 	- 이 속성을 보기 위해서는 `nativeEvent` 를 통해 브라우저의 고유 이벤트에 접근해야 한다.
 - 이 코드를 실행시키면 아래와 같은 결과가 나온다.
+	
     |                      한글                       |                      영문                       |
     |:-----------------------------------------------:|:-----------------------------------------------:|
     | ![한글의 경우](https://i.imgur.com/RiZZxNH.png) | ![영문의 경우](https://i.imgur.com/yluK3RX.png) |
-
 - 모종의 이유로 한글에서는 Enter 키가 두번 인식이된다.
- >If I insert korean characters in `<input>` tag without moving the cursor, and press down & hold the Enter key,
- >
+>If I insert korean characters in `<input>` tag without moving the cursor, and press down & hold the Enter key,
 >1. keydown event occurs (normal)
->
 >2. keyup event occurs (unexpected)
->
 >3. keydown event occurs (unexpected)
->
 >4. keypress event occurs (normal)
->
 >5. keydown & keypress event occurs continuously until enter key is released. (normal) And when I release the Enter key,
->
 >6. keyup event occurs (normal)
->
 >Step 2 & 3 are unexpected behaviors.
->
 >[출처](https://github.com/vuejs/vue/issues/10277#issuecomment-731768059)
 - 이러한 이유는 IME(Input Method Editor) 와 관련된 이슈인 것으로 추정되며, 이러한 조합 문자를 다루는 경우 `Enter` 키를 처리하는데에 있어서 불분명한 `keyUp` 이벤트와 `keyDown` 이벤트가 다시 한번 발생하게 되며, 그에 따라 `onKeyDown` 핸들러가 두번 실행되는 것이다.
 
