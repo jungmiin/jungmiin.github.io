@@ -19,13 +19,11 @@ toc: true
 - `Windows` 의 경우, 대부분의 실행 파일은 `.exe` 라는 확장자로 존재하는데, 이것이 실행 가능한 파일을 의미
 
 ## 장점
-
 - 프로그램이 즉시 실행 가능함
 - 일반적으로 다른 언어에 비해 빠르다
 - 소스 코드가 공개되어 있지 않기 때문에 안전하다
 
 ## 단점
-
 - 크로스 플랫폼에서 사용이 불가능하다
     - `MacOS` 에서 `exe` 가 실행 불가능하고, `Window` 에서 `dmg` 가 실행 불가능하다
 - 다른 CPU/Memory 에서의 실행을 대비해야 하기 때문에 유연하지 못함
@@ -35,9 +33,12 @@ toc: true
 - 고급 언어(C, C++, Java, Python, JavaScript...) 등으로 작성되어진 프로그램은 컴퓨터가 바로 인식해서 실행할 수 없다.
 - 따라서 고급 언어로 작성된 프로그램은 컴퓨터가 인식할 수 있는 형식으로 변화하는 과정을 거쳐야 한다.
 
+
 ## 우리가 C 프로그램을 컴파일하고 실행하는 방법
 ![](https://i.imgur.com/rAOQrUk.png)
+_지정된 이름을 넣어 소개하는 함수를 만들었다._
 ![](https://i.imgur.com/4cxFybz.png)
+_이러한 c파일은 아래의 과정을 거쳐서 컴파일된다._
 
 ## 컴파일 프로세스에는 어떤 과정이 있을까?
 ![](https://i.imgur.com/6o24mtL.png)
@@ -50,9 +51,11 @@ gcc -Wall -save-temps HelloWorld.c -o HelloWorld
 ```
 - 위의 명령어를 실행하면, 실행 파일과 함께 컴파일 프로세스를 진행하며 생성되는 중간 파일을 모두 저장한다. 
 ![](https://i.imgur.com/Oa6v0BY.png)
+_위와 같이 컴파일을 진행하며 생성되는 중간 파일들이 나타났다._
 
 ### Pre-Processor(HelloWorld.c -> HelloWorld.i)
 ![](https://i.imgur.com/gYDGJS9.png)
+_아직까진 코드의 형태를 알아볼 수 있다._
 
 #### 알 수 있는 것들
 - 주석이 제거되었음
@@ -64,6 +67,7 @@ gcc -Wall -save-temps HelloWorld.c -o HelloWorld
 
 ### Compiler(HelloWorld.i -> HelloWorld.s)
 ![](https://i.imgur.com/ODpcNN6.png)
+_아직까지도 드문드문 코드의 의미를 파악할 수 있다._
 
 #### 알 수 있는 것들
 - 일반적으로 C언어로 보였던 텍스트들이 저수준의 언어로 변경되었음
@@ -77,6 +81,7 @@ gcc -Wall -save-temps HelloWorld.c -o HelloWorld
 
 ### Assembler(HelloWorld.s -> HelloWorld.o)
 ![](https://i.imgur.com/04cg3gl.png)
+_이제는 코드가 알아볼 수 없는 형태로 바뀌었다._
 
 #### 알 수 있는 것들
 - 쉽게 해독할 수 없는 기계어로 변경되었음
@@ -138,21 +143,21 @@ https://meetup.nhncloud.com/posts/77
 - JavaScript는 변수의 타입이 실행 도중에 달라질 수 있는 매우 동적인 언어이기 때문
 - 만약 JavaScript의 JIT 컴파일러가 바이트 코드를 기계어로 변경하고자 한다면, 동적인 케이스를 모두 고려하여 코드를 생성해야한다
 - 다음은 변수 두개를 더하는 덧셈 코드에 대한 native code들이다
-	```assembly
-	// add r2, r2, r0 : virtual register R0, R2를 더하여 R2 register에 저장
-	ldr    r2, [r4] // R0의 값을 r2에 저장
-	ldr    r7, [r4, #4] // R0의 타입 정보를 r7에 저장
-	ldr    r0, [r4, #16] // R2의 값을 r0에 저장
-	ldr    r1, [r4, #20] // R2의 타입 정보를 r1에 저장
-	cmn    r1, #1 // R2의 타입이 int인지 체크
-	bne    0x4121e2c0 // R2의 타입이 int가 아닐 경우 Slow Case
-	cmn    r7, #1 // R1의 타입이 int인지 체크
-	bne    0x4121e310 // R1의 타입이 int가 아닐 경우 Slow Case
-	adds   r0, r0, r2 // R0와 R2의 값을 더함
-	bvs    0x4121e498 // Overflow 발생 시 Slow Case
-	str    r0, [r4, #16] // 덧셈 결과를 R2에 저장
-	b      0x4121e33c // 점프
-	```
+```assembly
+// add r2, r2, r0 : virtual register R0, R2를 더하여 R2 register에 저장
+ldr    r2, [r4] // R0의 값을 r2에 저장
+ldr    r7, [r4, #4] // R0의 타입 정보를 r7에 저장
+ldr    r0, [r4, #16] // R2의 값을 r0에 저장
+ldr    r1, [r4, #20] // R2의 타입 정보를 r1에 저장
+cmn    r1, #1 // R2의 타입이 int인지 체크
+bne    0x4121e2c0 // R2의 타입이 int가 아닐 경우 Slow Case
+cmn    r7, #1 // R1의 타입이 int인지 체크
+bne    0x4121e310 // R1의 타입이 int가 아닐 경우 Slow Case
+adds   r0, r0, r2 // R0와 R2의 값을 더함
+bvs    0x4121e498 // Overflow 발생 시 Slow Case
+str    r0, [r4, #16] // 덧셈 결과를 R2에 저장
+b      0x4121e33c // 점프
+```
 - 이와 같이, 타입이 다르거나 overflow가 발생하는 등 예외 케이스가 나오게 되면 Slow Case로 건너 뛰게 된다
 - Slow Case는 기계어로 표현하면 양이 많아지는 동작들을 변환하는 대신, 미리 내부에 C로 구현된 helper function을 호출하여 동작을 수행하는 경우를 말한다
 - 이러한 helper function은 인터프리터와 똑같은 코드를 사용하기 때문에 JIT를 사용하든 인터프리터를 사용하든 별다른 차이가 없게 된다
@@ -167,7 +172,7 @@ https://meetup.nhncloud.com/posts/77
 
 ## 이를 해결하기 위한 Adaptive Complication
 - 모든 코드를 일괄적으로 같은 수준의 최적화를 적용하는 것이 아니라, 반복 수행되는 정도에 따라 유동적으로 서로 다른 최적화 수준을 적용하는 방식
-	![](https://i.imgur.com/Nli4E7R.png)
+![](https://i.imgur.com/Nli4E7R.png)
 - **작동 방식**
 	- 기본적으로 모든 코드는 처음에 인터프리터로 수행
 	- runtime profiler를 통해 함수의 수행 빈도, 사용되는 변수들의 타입이나 값을 기록
