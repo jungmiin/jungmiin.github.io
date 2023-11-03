@@ -11,7 +11,8 @@ toc: true
 ## 문제 상황
 - `onKeyDown` 을 통해 `Enter` 키를 누르면 자동으로 넘어가는 기능을 구현하고자 하였다.
 - 그런데 이 상황을 통해 넘어가면, 요청이 두번씩 날라가는지 페이지가 두번 이동하는 현상이 발생하였다.
-	![[Pasted image 20231103152809.png|페이지 스택에 동일한 페이지가 이미 있는 것을 알 수 있다.]]
+![페이지 스택에 동일한 페이지가 이미 있는 것을 알 수 있다.](https://i.imgur.com/jUFEN3H.png)
+
 ## onKeyDown
 - 확실하게 문제를 파악하기 위해 어디서부터 요청이 두번 이루어지는 것을 파악하고자 하였다.
 - 다음은 `keyDown` 이벤트에 따른 처리를 해주는 `handleKeyDown` 함수이다.
@@ -49,8 +50,10 @@ const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
 >6. keyup event occurs (normal)
 >
 >Step 2 & 3 are unexpected behaviors.
+>
 >[출처](https://github.com/vuejs/vue/issues/10277#issuecomment-731768059)
 - 이러한 이유는 IME(Input Method Editor) 와 관련된 이슈인 것으로 추정되며, 이러한 조합 문자를 다루는 경우 `Enter` 키를 처리하는데에 있어서 불분명한 `keyUp` 이벤트와 `keyDown` 이벤트가 다시 한번 발생하게 되며, 그에 따라 `onKeyDown` 핸들러가 두번 실행되는 것이다.
+
 ## 해결 방법
 - 위의 `isComposing` 속성을 이용해 해결할 수 있다.
 ```typescript
